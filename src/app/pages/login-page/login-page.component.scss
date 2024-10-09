@@ -11,3 +11,16 @@
 .login-form__title {
   margin-bottom: 60px;
 }
+.password-input {
+  position: relative;
+}
+.password-eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #FFFFFFBF;
+  cursor: pointer;
+}
