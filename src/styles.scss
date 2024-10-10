@@ -3,8 +3,9 @@
 :root {
   --dark-color: #000000;
   --light-color: #FFFFFF;
-  --primery-color: #AE7AFF;
+  --primary-color: #AE7AFF;
   --grey-color: #5F646D;
+  --dark-hover-color: #161616;
 }
 body {
   font-family: 'JetBrains Mono', sans-serif;
@@ -32,7 +33,7 @@ body {
 .btn {
   width: 100%;
   border: none;
-  background: var(--primery-color);
+  background: var(--primary-color);
   color: var(--dark-color);
   padding: 10px 20px;
   font-weight: 700;
