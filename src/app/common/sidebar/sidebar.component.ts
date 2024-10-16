@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { CommonModule } from '@angular/common';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { ProfileService } from '../../data/services/profile.service';
+import { RouterModule } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [SvgIconComponent, CommonModule, SubscriberCardComponent],
+  imports: [SvgIconComponent, CommonModule, SubscriberCardComponent, RouterModule, ImgUrlPipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+  profileService = inject(ProfileService);
+
+  subscribers$ = this.profileService.getSubscribersShortList();
+
+  me = this.profileService.me;
+
   menuItems = [
     {
       label: 'Моя страница',
@@ -28,4 +38,9 @@ export class SidebarComponent {
       link: 'search'
     }
   ]
+
+  ngOnInit() {
+    firstValueFrom(this.profileService.getMe());
+  }
+
 }

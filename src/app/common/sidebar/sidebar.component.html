@@ -40,9 +40,36 @@
   </ul>
 </nav>
 
-<p class="medium-text subscribers">Подписчики</p>
+<p class="medium-text subscribers__text">Подписчики</p>
 
-<app-subscriber-card></app-subscriber-card>
+@for (profile of subscribers$ | async; track profile.id) {
+  <app-subscriber-card
+    [profile]="profile"
+  ></app-subscriber-card>
+}
+
+
+<div class="to-subscribers subscribers__link-wrap">
+  <a
+    [routerLink]="['/subscribers']"
+    class="to-subscribers__link medium-text"
+  >Все подписчики</a>
+  <svg
+    icon="chevron_right"
+    class="to-subscribers__icon"
+  ></svg>
+</div>
+
+<footer class="sidebar__footer">
+  @if (me(); as me) {
+    @if (me.avatarUrl) {
+      <img [src]="me.avatarUrl | imgUrl" alt="">
+    } @else {
+      <img src="/assets/img/avatar-placeholder.svg" alt="">
+    }
+  }
+  <img src="/assets/img/avatar-placeholder.svg" alt="">
+</footer>
 
 
 <!-- import { InjectionToken, effect, signal } from '@angular/core';
