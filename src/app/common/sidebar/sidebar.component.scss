@@ -1,6 +1,8 @@
 :host {
   display: block;
   padding: 20px 12px;
+  position: relative;
+  background: var(--dark-color);
 }
 .logo__small {
   width: 60px;
@@ -41,14 +43,6 @@
   }
 }
 
-.sidebar__footer {
-  background: var(--dark-hover-color);
-  border-radius: 2px;
-  padding: 4px 16px;
-  display: grid;
-  grid-template-columns: 32px 1fr 16px;
-}
-
 .main-menu__item-btn svg {
   width: 16px;
   height: 16px;
@@ -72,12 +66,35 @@
 .to-subscribers__icon {
   width: 18px;
   height: 18px;
+  color: var(--primary-color);
 }
 .sidebar__footer {
+  background: var(--dark-hover-color);
+  border-radius: 2px;
+  padding: 4px 16px;
+  display: grid;
+  grid-template-columns: 32px 1fr 16px;
+  gap: 12px;
+  align-items: center;
+  position: absolute;
+  bottom: 30px;
+  width: calc(100% - 20px);
+
   img {
     width: 32px;
     height: 32px;
     border-radius: 50%;
+    color: var(--primary-color);
+  }
+}
+.username-text {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.settings-btn {
+  svg {
+    width: 16px;
+    height: 16px;
     color: var(--primary-color);
   }
 }

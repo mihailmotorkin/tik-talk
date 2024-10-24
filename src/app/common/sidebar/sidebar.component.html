@@ -67,8 +67,18 @@
     } @else {
       <img src="/assets/img/avatar-placeholder.svg" alt="">
     }
+    <div class="medium-text username-text">{{ me.username }}</div>
   }
   <img src="/assets/img/avatar-placeholder.svg" alt="">
+
+  <div class="medium-text username-text">riyan_gosling</div>
+
+  <a
+    [routerLink]="['settings']"
+    class="settings-btn"
+  >
+    <svg icon="settings"></svg>
+  </a>
 </footer>
 
 
