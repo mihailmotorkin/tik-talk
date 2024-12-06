@@ -8,9 +8,9 @@ import { Pageble } from '../interfaces/pageble.interface';
   providedIn: 'root'
 })
 export class ProfileService {
-  http: HttpClient = inject(HttpClient);
+  http = inject(HttpClient);
   baseApiUrl = 'https://icherniakov.ru/yt-course/';
-  me = signal<Profile | null>(null);;
+  me = signal<Profile | null>(null);
 
   getTestAccounts() {
     return this.http.get<Profile[]>(`${this.baseApiUrl}account/test_accounts`);
@@ -18,9 +18,9 @@ export class ProfileService {
 
   getMe() {
     return this.http.get<Profile>(`${this.baseApiUrl}account/me`)
-      .pipe(
-        tap(res => this.me.set(res))
-      );
+      // .pipe(
+      //   tap(res => this.me.set(res))
+      // );
   }
 
   getTestAccount(id: string) {

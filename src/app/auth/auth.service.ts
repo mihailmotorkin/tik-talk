@@ -40,6 +40,13 @@ export class AuthService {
     )
   }
 
+  logout() {
+    this.cookieService.deleteAll();
+    this.token = null;
+    this.refreshToken = null;
+    this.router.navigate(['/login']);
+  }
+
   refreshAuthToken() {
     return this.http.post<TokenResponse>(
       `${this.baseApiUrl}refresh`,
@@ -55,13 +62,6 @@ export class AuthService {
     )
   }
 
-  logout() {
-    this.cookieService.deleteAll();
-    this.token = null;
-    this.refreshToken = null;
-    this.router.navigate(['/login']);
-  }
-
   saveTokens(res: TokenResponse) {
     this.token = res.access_token;
     this.refreshToken = res.refresh_token;
@@ -69,4 +69,6 @@ export class AuthService {
     this.cookieService.set('token', this.token);
     this.cookieService.set('refreshToken', this.refreshToken);
   }
+
+
 }
