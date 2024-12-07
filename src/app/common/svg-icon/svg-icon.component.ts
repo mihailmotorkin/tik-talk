@@ -8,10 +8,10 @@ import { Component, Input } from '@angular/core';
   styles: ['']
 })
 export class SvgIconComponent {
-  @Input() icon: string = '';
+  @Input() icon = '';
 
   get href() {
-    return `/assets/${this.icon}.svg#${this.icon}`;
+    return `/assets/svg/${this.icon}.svg#${this.icon}`;
   }
 
 }

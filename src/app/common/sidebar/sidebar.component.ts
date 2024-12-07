@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { ProfileService } from '../../data/services/profile.service';
 import { RouterModule } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import {firstValueFrom, map} from 'rxjs';
 import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
 
 @Component({

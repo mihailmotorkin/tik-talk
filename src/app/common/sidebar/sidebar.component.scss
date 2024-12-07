@@ -13,7 +13,7 @@
 .main-menu__list {
   display: grid;
   list-style: none;
-  gap: 8px;
+  grid-gap: 8px;
 }
 .main-menu__item-btn{
   display: grid;
@@ -23,7 +23,7 @@
   cursor: pointer;
   border: none;
   color: var(--light-color);
-  gap: 12px;
+  grid-gap: 12px;
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
@@ -49,6 +49,7 @@
   color: var(--light-color);
 }
 .subscribers__text {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .subscribers__link-wrap {
@@ -57,7 +58,6 @@
 .to-subscribers {
   display: flex;
   gap: 10px;
-  align-items: center;
 }
 .to-subscribers__link {
   color: var(--primary-color);
@@ -74,10 +74,10 @@
   padding: 4px 16px;
   display: grid;
   grid-template-columns: 32px 1fr 16px;
-  gap: 12px;
+  grid-gap: 12px;
   align-items: center;
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   width: calc(100% - 20px);
 
   img {
@@ -93,8 +93,8 @@
 }
 .settings-btn {
   svg {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
     color: var(--primary-color);
   }
 }

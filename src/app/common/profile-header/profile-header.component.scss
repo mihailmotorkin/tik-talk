@@ -1,0 +1,30 @@
+:host {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  grid-gap: 24px;
+}
+
+img {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+}
+
+.username-and-name {
+  text-align: left;
+}
+
+.username__title {
+  margin-bottom: 4px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 32px;
+}
+
+.username__subtitle {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}

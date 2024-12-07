@@ -1,1 +1,42 @@
-<p>profile-page works!</p>
+@if (profile$ | async; as profile) {
+  <header class="profile-page__header">
+
+    <app-profile-header [profile]="profile"></app-profile-header>
+
+    <a class="btn settings__btn" [routerLink]="['/settings']">
+      Редактировать
+      <svg icon="settings" class="settings-icon"></svg>
+    </a>
+  </header>
+
+  <main class="profile-page__body">
+    <app-post-feed></app-post-feed>
+
+    <div class="profile-page__subscribers">
+      <h3 class="profile-page__subscribers-title">Подписчики</h3>
+
+      <div class="subscribers-wrapper">
+        @for (subscriber of subscribers$ | async; track subscriber.id) {
+          <a class="subscriber-avatar__btn" [routerLink]="['/profile', subscriber.id]">
+            <img [src]="subscriber.avatarUrl | imgUrl" alt="">
+          </a>
+        }
+        <a class="to-subscribers-search__btn" [routerLink]="['/search']"></a>
+      </div>
+
+      <h3 class="profile-page__skills-title">Навыки</h3>
+
+      <div class="stack-wrapper">
+        @for (skill of ['123', '1234']; track skill) {
+          <div class="skill-tag">{{ skill }}</div>
+        }
+      </div>
+
+      <h3 class="profile-page__skills-title">О себе</h3>
+      <p class="medium-text">{{ profile.description }}</p>
+
+    </div>
+  </main>
+
+}
+
