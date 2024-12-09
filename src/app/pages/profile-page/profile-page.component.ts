@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ProfileHeaderComponent} from '../../common/profile-header/profile-header.component';
 import {ProfileService} from '../../data/services/profile.service';
 import {ActivatedRoute, RouterLink} from '@angular/router';
@@ -18,13 +18,12 @@ import {PostFeedComponent} from './post-feed/post-feed.component';
     AsyncPipe,
     SvgIconComponent,
     RouterLink,
-    NgForOf,
-    SubscriberCardComponent,
     ImgUrlPipe,
     PostFeedComponent
   ],
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss'
+  styleUrl: './profile-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePageComponent {
   profileService = inject(ProfileService);

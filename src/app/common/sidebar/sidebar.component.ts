@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { ProfileService } from '../../data/services/profile.service';
 import { RouterModule } from '@angular/router';
-import {firstValueFrom, map} from 'rxjs';
+import {firstValueFrom} from 'rxjs';
 import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
 
 @Component({
@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Моя страница',
       icon: 'home',
-      link: ''
+      link: 'profile/me'
     },
     {
       label: 'Чаты',
