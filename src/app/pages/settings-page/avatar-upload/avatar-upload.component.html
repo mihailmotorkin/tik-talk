@@ -4,6 +4,7 @@
   dnd
   class="dropzone"
   (keyup.enter)="fileDrop.click()"
+  (fileDropped)="onFileDropped($event)"
 >
 
   <div class="dropzone-content">
@@ -15,6 +16,7 @@
     class="avatar-input"
     tabindex="-1"
     type="file"
+    [(ngModel)]="avatar"
     #fileDrop
     (change)="fileBrowserHandler($event)"
   >

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, effect, inject, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, ViewChild} from '@angular/core';
 import {ProfileHeaderComponent} from '../../common/profile-header/profile-header.component';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProfileService} from '../../data/services/profile.service';
@@ -20,6 +20,7 @@ import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
 export class SettingsPageComponent {
   fb = inject(FormBuilder)
   profileService = inject(ProfileService);
+  @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent;
 
   form = this.fb.group({
     firstName: ['', Validators.required],
@@ -40,11 +41,16 @@ export class SettingsPageComponent {
     });
   }
 
+
   onSave() {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
 
     if (this.form.invalid) return;
+
+    if (this.avatarUploader.avatar) {
+      firstValueFrom(this.profileService.uploadAvatar(this.avatarUploader.avatar));
+    }
 
     //@ts-ignore
     firstValueFrom(this.profileService.patchProfile({
