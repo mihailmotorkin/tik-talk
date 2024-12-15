@@ -1,1 +1,18 @@
-<p>post-input works!</p>
+@if (profile(); as profile) {
+  <app-avatar-circle class="size32" [avatarUrl]="profile.avatarUrl"></app-avatar-circle>
+}
+
+<textarea
+  [(ngModel)]="postText"
+  class="hidden-textarea"
+  (input)="onTextAreaInput($event)"
+></textarea>
+
+<div class="smile-wrapper">
+  <svg icon="smile"></svg>
+</div>
+
+<button class="btn-icon" (click)="onCreatePost()">
+  <svg icon="send-message" class="svg16"></svg>
+</button>
+
