@@ -1,12 +1,11 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {ProfileHeaderComponent} from '../../common/profile-header/profile-header.component';
 import {ProfileService} from '../../data/services/profile.service';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {map, switchMap} from 'rxjs';
 import {toObservable} from '@angular/core/rxjs-interop';
-import {AsyncPipe, NgForOf} from '@angular/common';
+import {AsyncPipe} from '@angular/common';
 import {SvgIconComponent} from '../../common/svg-icon/svg-icon.component';
-import {SubscriberCardComponent} from '../../common/sidebar/subscriber-card/subscriber-card.component';
 import {ImgUrlPipe} from '../../helpers/pipes/img-url.pipe';
 import {PostFeedComponent} from './post-feed/post-feed.component';
 
@@ -31,6 +30,9 @@ export class ProfilePageComponent {
 
   me$ = toObservable(this.profileService.me);
   subscribers$ = this.profileService.getSubscribersShortList(5);
+  isMyId$ = this.route.params.pipe(
+    map(({id}) => id === 'me'),
+  );
 
   profile$ = this.route.params
     .pipe(
@@ -39,5 +41,6 @@ export class ProfilePageComponent {
 
         return this.profileService.getAccount(id);
       })
-    )
+    );
+
 }

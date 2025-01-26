@@ -1,9 +1,11 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, effect, inject, ViewChild} from '@angular/core';
 import {ProfileHeaderComponent} from '../../common/profile-header/profile-header.component';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProfileService} from '../../data/services/profile.service';
 import {firstValueFrom} from 'rxjs';
 import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
+import {AsyncPipe} from '@angular/common';
+import {toObservable} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-settings-page',
@@ -11,7 +13,8 @@ import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
   imports: [
     ProfileHeaderComponent,
     ReactiveFormsModule,
-    AvatarUploadComponent
+    AvatarUploadComponent,
+    AsyncPipe
   ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
@@ -30,12 +33,12 @@ export class SettingsPageComponent {
     stack: ['']
   })
 
+  profile$ = toObservable(this.profileService.me)
+
   constructor() {
     effect(() => {
-      //@ts-ignore
       this.form.patchValue({
         ...this.profileService.me(),
-        //@ts-ignore
         stack: this.mergeStack(this.profileService.me()?.stack)
       })
     });
