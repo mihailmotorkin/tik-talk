@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {Comment} from '../../../../data/interfaces/post.interface'
+import {PostComment} from '../../../../data/interfaces/post.interface'
 import {AvatarCircleComponent} from '../../../../common/avatar-circle/avatar-circle.component';
 import {DatePipe} from '@angular/common';
 
@@ -14,6 +14,6 @@ import {DatePipe} from '@angular/common';
   styleUrl: './comment.component.scss'
 })
 export class CommentComponent {
-  comment = input<Comment>();
+  comment = input<PostComment>();
 
 }

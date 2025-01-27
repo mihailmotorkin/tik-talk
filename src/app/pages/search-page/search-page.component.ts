@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { Profile } from '../../data/interfaces/profile.interface';
+import {AfterViewInit, Component, ElementRef, inject, Renderer2} from '@angular/core';
 import { ProfileService } from '../../data/services/profile.service';
 import { ProfileCardComponent } from '../../common/profile-card/profile-card.component';
 import {ProfileFiltersComponent} from './profile-filters/profile-filters.component';
+import {debounceTime, fromEvent} from 'rxjs';
 
 @Component({
   selector: 'app-search-page',
@@ -11,8 +11,25 @@ import {ProfileFiltersComponent} from './profile-filters/profile-filters.compone
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss'
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements AfterViewInit {
   profileService = inject(ProfileService);
   profiles = this.profileService.filteredProfiles;
+  r2 = inject(Renderer2);
+  hostElement = inject(ElementRef);
 
+  ngAfterViewInit() {
+    this.resizeFilters()
+
+    fromEvent(window, 'resize').pipe(
+      debounceTime(300)
+    ).subscribe(() => this.resizeFilters());
+  }
+
+
+  resizeFilters() {
+    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
+    const height = window.innerHeight - top - 24;
+
+    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
+  }
 }
