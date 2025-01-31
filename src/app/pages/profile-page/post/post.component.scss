@@ -6,7 +6,9 @@
   grid-template-columns: 32px 1fr;
   grid-gap: 16px;
 }
-
+.post-input__comment {
+  z-index: 1;
+}
 .post-body {
   display: grid;
   grid-gap: 12px;
