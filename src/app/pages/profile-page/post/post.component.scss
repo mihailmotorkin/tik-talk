@@ -63,4 +63,22 @@
   overflow-y: scroll;
   display: grid;
   grid-gap: 8px;
+
+  scrollbar-width: thin; /* Firefox: узкий скролл */
+  scrollbar-color: var(--primary-color) var(--dark-hover-color); /* Цвет ползунка и трека */
+}
+
+.post-comment__wrapper::-webkit-scrollbar {
+  width: 4px; /* Ширина скролла */
+}
+
+.post-comment__wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color); /* Цвет ползунка */
+  border-radius: 4px; /* Радиус углов */
+}
+
+.post-comment__wrapper::-webkit-scrollbar-track {
+  background-color: var(--dark-hover-color); /* Цвет трека (фона скролла) */
+  border-radius: 4px; /* Радиус углов */
+  width: 4px;
 }
