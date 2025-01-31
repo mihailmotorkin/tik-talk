@@ -25,6 +25,10 @@
 .post-created-at {
   color: var(--light-transparent-color);
 }
+.post-content {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
 
 .post-counters {
   display: flex;

@@ -12,7 +12,7 @@
       </strong>
     </div>
 
-    <p class="medium-text">{{ post.content }}</p>
+    <p class="medium-text post-content">{{ post.content }}</p>
 
     <div class="post-counters">
       <span class="comment-amount">
@@ -36,8 +36,7 @@
 
     <app-post-input
       class="post-input__comment"
-      (created)="onCreated()"
-      [postId]="post.id"
+      (created)="onCreateComment($event)"
       [isCommentInput]="true"
     ></app-post-input>
   </main>

@@ -7,6 +7,7 @@ import {CommentComponent} from './comment/comment.component';
 import {PostService} from '../../../data/services/post.service';
 import {firstValueFrom} from 'rxjs';
 import {TimeAgoPipe} from '../../../helpers/pipes/time-ago.pipe';
+import {ProfileService} from '../../../data/services/profile.service';
 
 @Component({
   selector: 'app-post',
@@ -23,6 +24,7 @@ import {TimeAgoPipe} from '../../../helpers/pipes/time-ago.pipe';
 })
 export class PostComponent implements OnInit {
   postService = inject(PostService);
+  profile = inject(ProfileService).me;
 
   post = input<Post>();
   comments = signal<PostComment[]>([])
@@ -31,8 +33,17 @@ export class PostComponent implements OnInit {
     this.comments.set(this.post()!.comments);
   }
 
-  async onCreated() {
-    const postComments = await firstValueFrom(this.postService.getCommentsByPostId(this.post()!.id));
-    this.comments.set(postComments);
+  onCreateComment(commentText: string): void {
+    if (!commentText) return;
+
+    firstValueFrom(this.postService.createComment({
+      text: commentText,
+      authorId: this.profile()!.id,
+      postId: this.post()!.id
+    })).then(async () => {
+      const postComments = await firstValueFrom(this.postService.getCommentsByPostId(this.post()!.id));
+      this.comments.set(postComments);
+    })
+
   }
 }

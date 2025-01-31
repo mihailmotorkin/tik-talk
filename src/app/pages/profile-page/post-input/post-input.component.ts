@@ -1,10 +1,18 @@
-import {Component, EventEmitter, HostBinding, inject, input, Input, Output, Renderer2} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  inject,
+  input,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {AvatarCircleComponent} from '../../../common/avatar-circle/avatar-circle.component';
 import {ProfileService} from '../../../data/services/profile.service';
 import {SvgIconComponent} from '../../../common/svg-icon/svg-icon.component';
-import {PostService} from '../../../data/services/post.service';
 import {FormsModule} from '@angular/forms';
-import {firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-post-input',
@@ -18,18 +26,17 @@ import {firstValueFrom} from 'rxjs';
   styleUrl: './post-input.component.scss'
 })
 export class PostInputComponent {
+  @Output() created = new EventEmitter();
+  @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
+
   @HostBinding('class.comment')
   get isComment() {
     return this.isCommentInput()
   }
 
-  @Output() created = new EventEmitter();
-
-  r2 = inject(Renderer2);
-  postService = inject(PostService);
   profile = inject(ProfileService).me;
+  r2 = inject(Renderer2);
   isCommentInput = input<boolean>(false);
-  postId = input<number>(0);
 
   postText = '';
 
@@ -39,27 +46,11 @@ export class PostInputComponent {
     this.r2.setStyle(textarea, 'height', textarea.scrollHeight + 'px');
   }
 
-  onCreatePost() {
+  onCreate() {
     if (!this.postText) return;
 
-    if (this.isCommentInput()) {
-      firstValueFrom(this.postService.createComment({
-        text: this.postText,
-        authorId: this.profile()!.id,
-        postId: this.postId()
-      })).then(() => {
-        this.postText = '';
-        this.created.emit();
-      })
-
-      return;
-    }
-
-    firstValueFrom(this.postService.createPost({
-      title: 'Пост',
-      content: this.postText,
-      authorId: this.profile()!.id
-    })).then(() => this.postText = '')
-
+    this.created.emit(this.postText);
+    this.r2.setStyle(this.textarea.nativeElement, 'height', 'auto');
+    this.postText = '';
   }
 }
