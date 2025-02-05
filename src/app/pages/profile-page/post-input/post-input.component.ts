@@ -26,7 +26,7 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './post-input.component.scss'
 })
 export class PostInputComponent {
-  @Output() created = new EventEmitter();
+  @Output() created = new EventEmitter<string>();
   @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
 
   @HostBinding('class.comment')

@@ -10,7 +10,7 @@
       <div class="medium-text">{{ chat.createdAt | date: 'HH:mm dd:MM:YYY' }}</div>
     </div>
     <div class="last-message__content">
-      <div class="medium-text">{{ chat.message ?? '...' }}</div>
+      <div class="medium-text">{{ chat.message || '...' }}</div>
       <span class="unread-message tt-control-label">{{ chat.unreadMessages }}</span>
     </div>
   </div>

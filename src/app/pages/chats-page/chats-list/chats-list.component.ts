@@ -6,6 +6,7 @@ import {AsyncPipe} from '@angular/common';
 import {SvgIconComponent} from '../../../common/svg-icon/svg-icon.component';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs';
+import {isEmptyString} from '../../../helpers/utils/utils';
 
 @Component({
   selector: 'app-chats-list',
@@ -35,10 +36,12 @@ export class ChatsListComponent {
             debounceTime(200),
             distinctUntilChanged(),
             map(inputValue => {
-              if(!inputValue) return;
+              if (!inputValue || isEmptyString(inputValue)) return chats;
 
               return chats.filter(chat => {
-                  return `${chat.userFrom.firstName} ${chat.userFrom.lastName}`.toLowerCase().includes(inputValue.toLowerCase() ?? '')
+                return `${chat.userFrom.firstName} ${chat.userFrom.lastName}`
+                    .toLowerCase()
+                    .includes(inputValue.toLowerCase())
               });
             })
           )
