@@ -7,6 +7,8 @@
   --grey-color: #5F646D;
   --dark-hover-color: #161616;
   --light-transparent-color: rgba(255, 255, 255, 0.75);
+
+  --light-border: 1px solid var(--light-color);
 }
 body {
   height: 100dvh;
@@ -59,6 +61,11 @@ body {
 .svg16 {
   width: 16px;
   height: 16px;
+}
+
+.svg18 {
+  width: 18px;
+  height: 18px;
 }
 
 .btn-shadow {
@@ -133,6 +140,7 @@ body {
   font-weight: 400;
   font-style: normal;
   color: var(--light-color);
+  border: none;
   border-bottom: 1px solid var(--light-color);
   height: 33px;
   background: none;

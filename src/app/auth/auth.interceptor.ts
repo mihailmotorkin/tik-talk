@@ -26,7 +26,11 @@ export const authTokenInterceptor: HttpInterceptorFn = (request, next) => {
   );
 }
 
-const refreshAndProceed = (authService: AuthService, request: HttpRequest<any>, next: HttpHandlerFn) => {
+const refreshAndProceed = (
+  authService: AuthService,
+  request: HttpRequest<any>,
+  next: HttpHandlerFn
+) => {
   if (!isRefreshing$.value) {
     isRefreshing$.next(true);
     return authService.refreshAuthToken().pipe(

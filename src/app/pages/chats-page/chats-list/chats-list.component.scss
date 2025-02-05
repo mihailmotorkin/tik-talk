@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  border-right: var(--light-border);
+}
+
+.chats-filters-input__wrapper {
+  padding: 16px 20px;
+  border-bottom: var(--light-border);
+}
+
+.chat-label__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-search__btn {
+  color: var(--light-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+}

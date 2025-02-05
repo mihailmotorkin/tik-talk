@@ -3,11 +3,19 @@
 
     <app-profile-header [profile]="profile"></app-profile-header>
 
-    @if (isMyId$ | async) {
+    @if (isMyPage$$()) {
       <a class="btn settings__btn" [routerLink]="['/settings']">
         Редактировать
         <svg icon="settings" class="settings-icon"></svg>
       </a>
+    } @else {
+      <button
+        class="btn settings__btn"
+        (click)="sendMessage(profile.id)"
+      >
+        Написать
+        <svg icon="send-message" class="settings-icon"></svg>
+      </button>
     }
   </header>
 
