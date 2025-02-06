@@ -11,6 +11,12 @@
   align-items: center;
 }
 
+:host.chat-message-input {
+  position: sticky;
+  bottom: 0;
+  top: auto;
+}
+
 .hidden-textarea {
   resize: none;
   background: var(--dark-color);

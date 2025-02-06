@@ -1,1 +1,18 @@
-<p>{{ message().text }}</p>
+@if (message(); as message) {
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="message.user?.avatarUrl"
+  ></app-avatar-circle>
+
+  <div class="message-container">
+    <strong class="medium-text">
+      {{ message.user?.firstName }} {{ message.user?.lastName }} {{ message.createdAt | date: 'HH:mm'}}
+    </strong>
+    <div class="message-text medium-text mt8">
+      {{ message.text }}
+    </div>
+  </div>
+
+}
+
+

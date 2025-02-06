@@ -1,0 +1,43 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-gap: 12px;
+}
+
+:host.is-mine {
+  grid-template-columns: 1fr 32px;
+  justify-self: end;
+
+  .message-container {
+    order: -1;
+  }
+
+  .message-text {
+    mask: linear-gradient(#000 0 0), linear-gradient(-140deg, #000, 50%, #0000 0) border-box 100% 100% / 200% 200% no-repeat;
+    mask-composite: exclude;
+    mask-position: 5% 90%;
+    background: var(--primary-color);
+    color: var(--dark-color);
+  }
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.message-text {
+  padding: 8px 16px;
+  background: var(--message-color);
+  font-weight: 500;
+  color: var(--light-color);
+  width: fit-content;
+  mask: linear-gradient(#000 0 0), linear-gradient(140deg, #000, 50%, #0000 0) border-box 100% 100% / 200% 200% no-repeat;
+  mask-composite: exclude;
+  mask-position: 95% 90%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 300px;
+}
+
+
+

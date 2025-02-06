@@ -16,12 +16,14 @@ export interface Message {
   createdAt: string
   isRead: boolean
   updatedAt: string
+  user?: Profile
+  isMine: boolean
 }
 
 export interface LastMessageResponse {
   id: number
   userFrom: Profile
-  message: string
+  message: string | null
   createdAt: string
   unreadMessages: number
 }

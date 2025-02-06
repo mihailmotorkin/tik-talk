@@ -1,8 +1,8 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  inject,
+  EventEmitter, HostBinding,
+  inject, input,
   Output,
   Renderer2,
   ViewChild
@@ -26,9 +26,14 @@ import {ProfileService} from '../../data/services/profile.service';
 export class MessageInputComponent {
   @Output() created = new EventEmitter<string>();
   @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
+  @HostBinding('class.chat-message-input')
+  get isChatInput() {
+    return this.isChatMessageInput();
+  }
 
   r2 = inject(Renderer2);
   me = inject(ProfileService).me;
+  isChatMessageInput = input<boolean>(false);
 
   postText = '';
 
