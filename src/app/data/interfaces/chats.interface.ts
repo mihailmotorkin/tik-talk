@@ -27,3 +27,8 @@ export interface LastMessageResponse {
   createdAt: string
   unreadMessages: number
 }
+
+export interface SortedMessageByDate {
+  messages: Message[]
+  messagesDate: string
+}

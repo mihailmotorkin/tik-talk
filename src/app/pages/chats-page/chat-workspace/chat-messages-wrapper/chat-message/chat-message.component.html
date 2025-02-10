@@ -6,7 +6,7 @@
 
   <div class="message-container">
     <strong class="medium-text">
-      {{ message.user?.firstName }} {{ message.user?.lastName }} {{ message.createdAt | date: 'HH:mm'}}
+      {{ message.user?.firstName }} {{ message.user?.lastName }} {{ getLocalTime(message.createdAt) }}
     </strong>
     <div class="message-text medium-text mt8">
       {{ message.text }}

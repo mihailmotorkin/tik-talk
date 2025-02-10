@@ -10,3 +10,15 @@
   grid-gap: 12px;
   padding-bottom: 16px;
 }
+
+.date-text {
+  padding: 6px 26px;
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--light-color);
+  background: var(--dark-hover-color);
+  border-radius: 1px;
+}

@@ -2,6 +2,7 @@ import {Component, HostBinding, input} from '@angular/core';
 import {Message} from '../../../../../data/interfaces/chats.interface';
 import {AvatarCircleComponent} from '../../../../../common/avatar-circle/avatar-circle.component';
 import {DatePipe} from '@angular/common';
+import {DateTime} from 'luxon';
 
 @Component({
   selector: 'app-chat-message',
@@ -19,6 +20,10 @@ export class ChatMessageComponent {
   @HostBinding('class.is-mine')
   get isMine() {
     return this.message().isMine
+  }
+
+  getLocalTime(utcDate: string): string {
+    return DateTime.fromISO(utcDate, { zone: 'utc' }).toLocal().toFormat('HH:mm');
   }
 
 }
