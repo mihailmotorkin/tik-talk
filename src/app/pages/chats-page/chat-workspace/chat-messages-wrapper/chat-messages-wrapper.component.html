@@ -1,4 +1,4 @@
-<div class="messages-wrapper" #messagesContainer>
+<div class="messages-wrapper">
   @for (message of messages(); track message.messagesDate) {
     <div class="date-text">{{ message.messagesDate }}</div>
     @for (message of message.messages; track message.id) {

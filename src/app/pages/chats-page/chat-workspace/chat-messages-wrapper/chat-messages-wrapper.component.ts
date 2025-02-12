@@ -26,8 +26,6 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
   styleUrl: './chat-messages-wrapper.component.scss'
 })
 export class ChatMessagesWrapperComponent implements AfterViewInit {
-  @ViewChild('messagesContainer') private messagesContainer!: ElementRef<HTMLElement>;
-
   chatService = inject(ChatsService);
   r2 = inject(Renderer2);
   hostElement = inject(ElementRef);
@@ -46,32 +44,34 @@ export class ChatMessagesWrapperComponent implements AfterViewInit {
       )
       .subscribe(() => this.resizeChat())
 
+
     timer(0, 5000)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.messages.set(this.chatService.activeChatMessages()));
-  }
+      .subscribe(() => {
+        firstValueFrom(this.chatService.getChatsById(this.chat().id));
+      });
 
-  ngAfterViewChecked() {
-    this.scrollToBottom();
-  }
-
-  resizeChat() {
-    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
-
-    const height = window.innerHeight - top - 24 - 24;
-    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
-  }
-
-  // Прокручиваем контейнер сообщений в самый низ
-  private scrollToBottom() {
-    if (this.messagesContainer) {
-      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
-    }
   }
 
   async onSendMessage(messageText: string) {
     await firstValueFrom(this.chatService.sendMessage(this.chat().id, messageText));
 
     await firstValueFrom(this.chatService.getChatsById(this.chat().id));
+
+    this.scrollBottom()
   }
+
+  private resizeChat() {
+    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
+
+    const height = window.innerHeight - top - 24 - 24;
+    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
+  }
+
+  private scrollBottom() {
+    const element = this.hostElement.nativeElement;
+    this.r2.setProperty(element, 'scroll', element.scrollHeight);
+  }
+
+
 }
