@@ -6,6 +6,7 @@ import { LayoutComponent } from './common/layout/layout.component';
 import { canActivateAuth } from './auth/access.guard';
 import {SettingsPageComponent} from './pages/settings-page/settings-page.component';
 import {chatsRoutes} from './pages/chats-page/chatsRoutes';
+import {FormsComponent} from './experimental/forms/forms.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,7 @@ export const routes: Routes = [
         path: 'chats',
         loadChildren: () => chatsRoutes
       },
+      { path: 'form', component: FormsComponent}
     ],
     canActivate: [canActivateAuth]
   },

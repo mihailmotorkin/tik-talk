@@ -47,18 +47,23 @@ export class ChatMessagesWrapperComponent implements AfterViewInit {
 
     timer(0, 5000)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        firstValueFrom(this.chatService.getChatsById(this.chat().id));
+      .subscribe(async () => {
+        await this.refreshMessages()
       });
 
   }
 
   async onSendMessage(messageText: string) {
     await firstValueFrom(this.chatService.sendMessage(this.chat().id, messageText));
+    await this.refreshMessages(true);
+  }
 
+  async refreshMessages(scrollBottom = false) {
     await firstValueFrom(this.chatService.getChatsById(this.chat().id));
 
-    this.scrollBottom()
+    if (scrollBottom) {
+      this.scrollBottom();
+    }
   }
 
   private resizeChat() {
@@ -70,7 +75,10 @@ export class ChatMessagesWrapperComponent implements AfterViewInit {
 
   private scrollBottom() {
     const element = this.hostElement.nativeElement;
-    this.r2.setProperty(element, 'scroll', element.scrollHeight);
+    element.scrollTo({
+      top: element.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 
 

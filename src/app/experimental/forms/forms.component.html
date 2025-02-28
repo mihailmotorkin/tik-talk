@@ -1,0 +1,164 @@
+<form
+  class="major-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit($event)"
+>
+  <h4 class="major-form__title">Информация о соискателе</h4>
+  <label>
+    Специальность
+    <select class="tt-input" formControlName="type">
+      <option [value]="MajorType.FRONTEND">Frontend</option>
+      <option [value]="MajorType.BACKEND">Backend</option>
+      <option [value]="MajorType.DATABASE">Database</option>
+      <option [value]="MajorType.FULLSTACK">Fullstack</option>
+      <option [value]="MajorType.TESTER">Tester</option>
+      <option [value]="MajorType.DESIGNER">Designer</option>
+      <option [value]="MajorType.PROJECT">Project manager</option>
+    </select>
+  </label>
+  <label>
+    Имя
+    <input
+      class="tt-input"
+      type="text"
+      placeholder="Илон"
+      formControlName="name"
+    >
+    <small class="validation">Это поле обязательно!</small>
+  </label>
+
+  @if (form.controls.name.touched && form.controls.name.hasError('nameValid')) {
+    <small>{{ form.controls.name.getError('nameValid')?.message }}</small>
+  }
+
+  @if (form.controls.name.touched && form.controls.name.hasError('startsWith')) {
+    <small>{{ form.controls.name.getError('startsWith')?.message }}</small>
+  }
+
+  <label>
+    Фамилия
+    <input
+      class="tt-input"
+      type="text"
+      placeholder="Маск"
+      formControlName="lastName"
+    >
+  </label>
+  <label>
+    Почта
+    <input
+      class="tt-input"
+      type="email"
+      placeholder="elon@musk.com"
+      formControlName="email"
+    >
+  </label>
+
+  <div style="display: flex; justify-content: space-between">
+    <h4 class="major-form__title">Период доставки</h4>
+  </div>
+
+  <div class="two-columns" formGroupName="dateRange">
+    <label>
+      От
+      <input
+        class="tt-input"
+        type="date"
+        formControlName="from"
+      >
+    </label>
+    <label>
+      До
+      <input
+        class="tt-input"
+        type="date"
+        formControlName="to"
+      >
+    </label>
+  </div>
+
+  @if (form.controls.dateRange.touched && form.controls.dateRange.hasError('dateRange')) {
+    <small>{{ form.controls.dateRange.getError('dateRange')?.message }}</small>
+  }
+
+  <div>
+    <div style="display: flex; justify-content: space-between">
+      <h4 class="major-form__title">Адрес проживания</h4>
+      <button
+        class="btn"
+        style="width: 50px"
+        (click)="addAddress()"
+      >+
+      </button>
+    </div>
+
+    @for (group of form.controls.addresses.controls; track group; let index = $index) {
+      <div class="address-form__grid" [formGroup]="group">
+        <label>
+          Город
+          <input
+            class="tt-input"
+            type="text"
+            placeholder="Город"
+            formControlName="city"
+          >
+        </label>
+        <label>
+          Улица
+          <input
+            class="tt-input"
+            type="text"
+            placeholder="Улица"
+            formControlName="street"
+          >
+        </label>
+        <label>
+          Дом
+          <input
+            class="tt-input"
+            type="number"
+            placeholder="Дом"
+            formControlName="building"
+          >
+        </label>
+        <label>
+          Квартира
+          <input
+            class="tt-input"
+            type="number"
+            placeholder="Квартира"
+            formControlName="apartment"
+          >
+        </label>
+
+        <button
+          class="btn"
+          style="grid-column-start: 1; grid-column-end: 3;"
+          (click)="deleteAddress(index)"
+        >
+          Удалить
+        </button>
+      </div>
+    }
+  </div>
+
+  <div [formGroup]="form.controls.feature">
+    <h4 class="major-form__title">Дополнительно</h4>
+    <div style="display: grid; grid-gap: 16px; margin-bottom: 16px">
+      @for (control of form.controls.feature.controls | keyvalue: sort; track control; let i = $index) {
+        <label>
+          {{ features[i].label }}
+          <input type="checkbox" [formControlName]="control.key">
+        </label>
+      }
+    </div>
+  </div>
+
+  <button
+    class="btn"
+    type="submit"
+  >Отправить
+  </button>
+</form>
+<!--    [disabled]="form.invalid"-->
+

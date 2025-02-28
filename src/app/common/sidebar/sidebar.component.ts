@@ -36,6 +36,11 @@ export class SidebarComponent implements OnInit {
       label: 'Поиск',
       icon: 'search',
       link: 'search'
+    },
+    {
+      label: 'Заполни форму',
+      icon: 'form',
+      link: 'form'
     }
   ]
 

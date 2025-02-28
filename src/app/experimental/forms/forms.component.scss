@@ -1,0 +1,50 @@
+.major-form {
+  display: grid;
+  place-content: center;
+}
+
+.major-form__title {
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.address-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  margin-bottom: 16px;
+}
+
+.validation {
+  display: none;
+}
+
+.tt-input.ng-invalid.ng-touched {
+  border: 2px solid tomato;
+}
+
+.tt-input.ng-invalid.ng-touched + .validation {
+  display: block;
+}
+
+//.ng-submitted {
+//  border: 10px solid goldenrod;
+//}
+
+.two-columns {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.tt-input::-webkit-calendar-picker-indicator {
+  background: var(--primary-color);
+  cursor: pointer;
+}
+
+.tt-input.ng-pending {
+  border: 2px dashed var(--primary-color);
+}
