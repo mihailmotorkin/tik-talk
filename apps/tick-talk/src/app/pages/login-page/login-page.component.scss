@@ -1,0 +1,30 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 100dvh;
+  margin: 0 5%;
+  grid-gap: 230px;
+}
+.login-form__btn {
+  margin-top: 16px;
+}
+.login-form__title {
+  margin-bottom: 60px;
+}
+.password-input {
+  position: relative;
+}
+.password-eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #ffffffbf;
+  cursor: pointer;
+}
+.password-eye-btn.active {
+  color: var(--primary-color);
+}
