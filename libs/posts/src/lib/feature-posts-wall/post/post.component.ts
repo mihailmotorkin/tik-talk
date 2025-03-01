@@ -4,7 +4,7 @@ import { CommentComponent } from '../../ui';
 import { firstValueFrom } from 'rxjs';
 import { Post, PostComment, PostService } from '../../data';
 import { AvatarCircleComponent, SvgIconComponent, TimeAgoPipe } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-post',
@@ -21,7 +21,7 @@ import { ProfileService } from '@tt/profile';
 })
 export class PostComponent implements OnInit {
   postService = inject(PostService);
-  profile = inject(ProfileService).me;
+  profile = inject(GlobalStoreService).me;
 
   post = input<Post>();
   comments = signal<PostComment[]>([]);

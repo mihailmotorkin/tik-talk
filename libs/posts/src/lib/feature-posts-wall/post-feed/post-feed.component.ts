@@ -10,8 +10,8 @@ import { PostInputComponent } from '../../ui';
 import { PostService } from '../../data';
 import { debounceTime, firstValueFrom, fromEvent } from 'rxjs';
 import { Post } from '../../data';
-import { ProfileService } from '@tt/profile';
 import { PostComponent } from '../post/post.component';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-post-feed',
@@ -22,7 +22,7 @@ import { PostComponent } from '../post/post.component';
 })
 export class PostFeedComponent implements AfterViewInit {
   postService = inject(PostService);
-  profile = inject(ProfileService).me;
+  profile = inject(GlobalStoreService).me;
   post = input<Post>();
   r2 = inject(Renderer2);
   hostElement = inject(ElementRef);

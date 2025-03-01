@@ -1,8 +1,8 @@
-import { Profile } from "./interfaces/profile.interface";
+import { Profile } from "@tt/interfaces/profile/profile.interface";
 import { ProfileService } from "./services/profile.service";
 
 export {
-  ProfileService
+  ProfileService,
 };
 export type { Profile };
 

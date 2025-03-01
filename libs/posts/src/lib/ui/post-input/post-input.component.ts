@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-post-input',
@@ -29,7 +29,7 @@ export class PostInputComponent {
     return this.isCommentInput();
   }
 
-  profile = inject(ProfileService).me;
+  profile = inject(GlobalStoreService).me;
   r2 = inject(Renderer2);
   isCommentInput = input<boolean>(false);
 
