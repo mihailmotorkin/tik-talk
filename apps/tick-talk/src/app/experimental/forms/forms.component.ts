@@ -69,11 +69,10 @@ function validateDateRange({
 }
 
 @Component({
-  selector: 'app-forms',
-  standalone: true,
-  imports: [ReactiveFormsModule, KeyValuePipe],
-  templateUrl: './forms.component.html',
-  styleUrl: './forms.component.scss',
+    selector: 'app-forms',
+    imports: [ReactiveFormsModule, KeyValuePipe],
+    templateUrl: './forms.component.html',
+    styleUrl: './forms.component.scss'
 })
 export class FormsComponent {
   protected readonly MajorType = MajorType;

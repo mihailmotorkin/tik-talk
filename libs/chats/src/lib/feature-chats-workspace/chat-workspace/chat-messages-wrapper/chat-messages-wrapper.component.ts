@@ -15,11 +15,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MessageInputComponent } from '../../../ui';
 
 @Component({
-  selector: 'app-chat-messages-wrapper',
-  standalone: true,
-  imports: [ChatMessageComponent, MessageInputComponent],
-  templateUrl: './chat-messages-wrapper.component.html',
-  styleUrl: './chat-messages-wrapper.component.scss',
+    selector: 'app-chat-messages-wrapper',
+    imports: [ChatMessageComponent, MessageInputComponent],
+    templateUrl: './chat-messages-wrapper.component.html',
+    styleUrl: './chat-messages-wrapper.component.scss'
 })
 export class ChatMessagesWrapperComponent implements AfterViewInit {
   chatService = inject(ChatsService);

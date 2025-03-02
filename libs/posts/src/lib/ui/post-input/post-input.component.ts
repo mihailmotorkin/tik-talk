@@ -14,11 +14,10 @@ import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-post-input',
-  standalone: true,
-  imports: [AvatarCircleComponent, SvgIconComponent, FormsModule],
-  templateUrl: './post-input.component.html',
-  styleUrl: './post-input.component.scss',
+    selector: 'app-post-input',
+    imports: [AvatarCircleComponent, SvgIconComponent, FormsModule],
+    templateUrl: './post-input.component.html',
+    styleUrl: './post-input.component.scss'
 })
 export class PostInputComponent {
   @Output() created = new EventEmitter<string>();

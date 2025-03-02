@@ -7,17 +7,16 @@ import { AvatarCircleComponent, SvgIconComponent, TimeAgoPipe } from '@tt/common
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-post',
-  standalone: true,
-  imports: [
-    AvatarCircleComponent,
-    TimeAgoPipe,
-    SvgIconComponent,
-    PostInputComponent,
-    CommentComponent,
-  ],
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.scss',
+    selector: 'app-post',
+    imports: [
+        AvatarCircleComponent,
+        TimeAgoPipe,
+        SvgIconComponent,
+        PostInputComponent,
+        CommentComponent,
+    ],
+    templateUrl: './post.component.html',
+    styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit {
   postService = inject(PostService);

@@ -14,11 +14,10 @@ import { PostComponent } from '../post/post.component';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-post-feed',
-  standalone: true,
-  imports: [PostInputComponent, PostComponent],
-  templateUrl: './post-feed.component.html',
-  styleUrl: './post-feed.component.scss',
+    selector: 'app-post-feed',
+    imports: [PostInputComponent, PostComponent],
+    templateUrl: './post-feed.component.html',
+    styleUrl: './post-feed.component.scss'
 })
 export class PostFeedComponent implements AfterViewInit {
   postService = inject(PostService);

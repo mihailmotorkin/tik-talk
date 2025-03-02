@@ -15,11 +15,10 @@ import { SvgIconComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-message-input',
-  standalone: true,
-  imports: [AvatarCircleComponent, FormsModule, SvgIconComponent],
-  templateUrl: './message-input.component.html',
-  styleUrl: './message-input.component.scss',
+    selector: 'app-message-input',
+    imports: [AvatarCircleComponent, FormsModule, SvgIconComponent],
+    templateUrl: './message-input.component.html',
+    styleUrl: './message-input.component.scss'
 })
 export class MessageInputComponent {
   @Output() created = new EventEmitter<string>();

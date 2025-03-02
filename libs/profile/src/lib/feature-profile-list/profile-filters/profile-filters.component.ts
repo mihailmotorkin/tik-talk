@@ -2,18 +2,19 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ProfileService } from '../../data';
+import { profileActions, ProfileService } from '../../data';
+import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-profile-filters',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './profile-filters.component.html',
-  styleUrl: './profile-filters.component.scss',
+    selector: 'app-profile-filters',
+    imports: [FormsModule, ReactiveFormsModule],
+    templateUrl: './profile-filters.component.html',
+    styleUrl: './profile-filters.component.scss'
 })
 export class ProfileFiltersComponent {
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
+  store = inject(Store);
 
   searchForm = this.fb.group({
     firstName: [''],
@@ -26,11 +27,10 @@ export class ProfileFiltersComponent {
       .pipe(
         startWith({}),
         debounceTime(500),
-        switchMap((formValue) => {
-          return this.profileService.filterProfiles(formValue);
-        }),
         takeUntilDestroyed()
       )
-      .subscribe();
+      .subscribe(formValue => {
+        this.store.dispatch(profileActions.filterEvents({filters: formValue}));
+      });
   }
 }

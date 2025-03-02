@@ -7,11 +7,10 @@ import { debounceTime, filter, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-chat-workspace',
-  standalone: true,
-  imports: [ChatHeaderComponent, ChatMessagesWrapperComponent, AsyncPipe],
-  templateUrl: './chat-workspace.component.html',
-  styleUrl: './chat-workspace.component.scss',
+    selector: 'app-chat-workspace',
+    imports: [ChatHeaderComponent, ChatMessagesWrapperComponent, AsyncPipe],
+    templateUrl: './chat-workspace.component.html',
+    styleUrl: './chat-workspace.component.scss'
 })
 export class ChatWorkspaceComponent {
   route = inject(ActivatedRoute);

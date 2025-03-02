@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { SvgIconComponent } from '@tt/common-ui';
 
 @Component({
-  selector: 'app-avatar-upload',
-  standalone: true,
-  imports: [DndDirective, SvgIconComponent, FormsModule],
-  templateUrl: './avatar-upload.component.html',
-  styleUrl: './avatar-upload.component.scss',
+    selector: 'app-avatar-upload',
+    imports: [DndDirective, SvgIconComponent, FormsModule],
+    templateUrl: './avatar-upload.component.html',
+    styleUrl: './avatar-upload.component.scss'
 })
 export class AvatarUploadComponent {
   preview = signal<string>('/assets/images/avatar-placeholder.svg');

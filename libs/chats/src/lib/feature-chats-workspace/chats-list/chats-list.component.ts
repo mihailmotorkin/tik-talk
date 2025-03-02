@@ -15,19 +15,18 @@ import {
 import { isEmptyString } from '@tt/shared';
 
 @Component({
-  selector: 'app-chats-list',
-  standalone: true,
-  imports: [
-    ChatsBtnComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    AsyncPipe,
-    SvgIconComponent,
-    RouterLink,
-    RouterLinkActive,
-  ],
-  templateUrl: './chats-list.component.html',
-  styleUrl: './chats-list.component.scss',
+    selector: 'app-chats-list',
+    imports: [
+        ChatsBtnComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        AsyncPipe,
+        SvgIconComponent,
+        RouterLink,
+        RouterLinkActive,
+    ],
+    templateUrl: './chats-list.component.html',
+    styleUrl: './chats-list.component.scss'
 })
 export class ChatsListComponent {
   chatService = inject(ChatsService);

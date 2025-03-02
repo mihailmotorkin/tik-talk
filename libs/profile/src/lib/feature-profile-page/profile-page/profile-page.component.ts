@@ -15,19 +15,18 @@ import { ProfileHeaderComponent } from '../../ui';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-profile-page',
-  standalone: true,
-  imports: [
-    ProfileHeaderComponent,
-    AsyncPipe,
-    SvgIconComponent,
-    RouterLink,
-    ImgUrlPipe,
-    PostFeedComponent,
-  ],
-  templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-profile-page',
+    imports: [
+        ProfileHeaderComponent,
+        AsyncPipe,
+        SvgIconComponent,
+        RouterLink,
+        ImgUrlPipe,
+        PostFeedComponent,
+    ],
+    templateUrl: './profile-page.component.html',
+    styleUrl: './profile-page.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePageComponent {
   profileService = inject(ProfileService);

@@ -8,18 +8,18 @@ import {
 import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
 import { debounceTime, fromEvent } from 'rxjs';
-import { ProfileService } from '../../data';
+import { selectFilteredProfiles } from '../../data';
+import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-search-page',
-  standalone: true,
-  imports: [ProfileCardComponent, ProfileFiltersComponent],
-  templateUrl: './search-page.component.html',
-  styleUrl: './search-page.component.scss',
+    selector: 'app-search-page',
+    imports: [ProfileCardComponent, ProfileFiltersComponent],
+    templateUrl: './search-page.component.html',
+    styleUrl: './search-page.component.scss'
 })
 export class SearchPageComponent implements AfterViewInit {
-  profileService = inject(ProfileService);
-  profiles = this.profileService.filteredProfiles;
+  store = inject(Store);
+  profiles = this.store.selectSignal(selectFilteredProfiles);
   r2 = inject(Renderer2);
   hostElement = inject(ElementRef);
 

@@ -14,17 +14,16 @@ import { GlobalStoreService } from '@tt/shared';
 import { ProfileService } from '@tt/profile';
 
 @Component({
-  selector: 'app-settings-page',
-  standalone: true,
-  imports: [
-    ProfileHeaderComponent,
-    ReactiveFormsModule,
-    AvatarUploadComponent,
-    AsyncPipe,
-  ],
-  templateUrl: './settings-page.component.html',
-  styleUrl: './settings-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-settings-page',
+    imports: [
+        ProfileHeaderComponent,
+        ReactiveFormsModule,
+        AvatarUploadComponent,
+        AsyncPipe,
+    ],
+    templateUrl: './settings-page.component.html',
+    styleUrl: './settings-page.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsPageComponent {
   fb = inject(FormBuilder);

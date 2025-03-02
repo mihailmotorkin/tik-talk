@@ -8,17 +8,16 @@ import { ProfileService } from '@tt/profile';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: true,
-  imports: [
-    SvgIconComponent,
-    CommonModule,
-    SubscriberCardComponent,
-    RouterModule,
-    ImgUrlPipe,
-  ],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+    selector: 'app-sidebar',
+    imports: [
+        SvgIconComponent,
+        CommonModule,
+        SubscriberCardComponent,
+        RouterModule,
+        ImgUrlPipe,
+    ],
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);
