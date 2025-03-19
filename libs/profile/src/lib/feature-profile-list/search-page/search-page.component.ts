@@ -12,10 +12,10 @@ import { selectFilteredProfiles } from '../../data';
 import { Store } from '@ngrx/store';
 
 @Component({
-    selector: 'app-search-page',
-    imports: [ProfileCardComponent, ProfileFiltersComponent],
-    templateUrl: './search-page.component.html',
-    styleUrl: './search-page.component.scss'
+  selector: 'app-search-page',
+  imports: [ProfileCardComponent, ProfileFiltersComponent],
+  templateUrl: './search-page.component.html',
+  styleUrl: './search-page.component.scss'
 })
 export class SearchPageComponent implements AfterViewInit {
   store = inject(Store);

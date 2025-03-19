@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, startWith, switchMap } from 'rxjs';
+import { debounceTime, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { profileActions, ProfileService } from '../../data';
+import { profileActions, selectProfileFilters } from '../../data';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -13,7 +13,6 @@ import { Store } from '@ngrx/store';
 })
 export class ProfileFiltersComponent {
   fb = inject(FormBuilder);
-  profileService = inject(ProfileService);
   store = inject(Store);
 
   searchForm = this.fb.group({
@@ -32,5 +31,8 @@ export class ProfileFiltersComponent {
       .subscribe(formValue => {
         this.store.dispatch(profileActions.filterEvents({filters: formValue}));
       });
+
+    const filters = this.store.selectSignal(selectProfileFilters)();
+    this.searchForm.patchValue(filters);
   }
 }
