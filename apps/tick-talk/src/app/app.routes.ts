@@ -8,6 +8,7 @@ import { chatsRoutes } from '@tt/chats';
 import { FormsComponent } from './experimental/forms/forms.component';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { postFeature, PostsEffects } from '@tt/posts';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,14 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
-      { path: 'profile/:id', component: ProfilePageComponent },
+      {
+        path: 'profile/:id',
+        component: ProfilePageComponent,
+        providers: [
+          provideState(postFeature),
+          provideEffects(PostsEffects)
+        ]
+      },
       { path: 'settings', component: SettingsPageComponent },
       {
         path: 'search',

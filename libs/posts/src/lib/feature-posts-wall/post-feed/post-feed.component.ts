@@ -3,32 +3,32 @@ import {
   Component,
   ElementRef,
   inject,
-  input,
   Renderer2,
 } from '@angular/core';
 import { PostInputComponent } from '../../ui';
-import { PostService } from '../../data';
-import { debounceTime, firstValueFrom, fromEvent } from 'rxjs';
-import { Post } from '../../data';
+import { postActions } from '../../data';
+import { debounceTime, fromEvent } from 'rxjs';
 import { PostComponent } from '../post/post.component';
 import { GlobalStoreService } from '@tt/shared';
+import { Store } from '@ngrx/store';
+import { selectAllPosts } from '../../data/store/selectors';
 
 @Component({
-    selector: 'app-post-feed',
-    imports: [PostInputComponent, PostComponent],
-    templateUrl: './post-feed.component.html',
-    styleUrl: './post-feed.component.scss'
+  selector: 'app-post-feed',
+  imports: [PostInputComponent, PostComponent],
+  templateUrl: './post-feed.component.html',
+  styleUrl: './post-feed.component.scss'
 })
 export class PostFeedComponent implements AfterViewInit {
-  postService = inject(PostService);
   profile = inject(GlobalStoreService).me;
-  post = input<Post>();
-  r2 = inject(Renderer2);
   hostElement = inject(ElementRef);
-  feed = this.postService.posts;
+  r2 = inject(Renderer2);
+  store = inject(Store);
+
+  feed = this.store.selectSignal(selectAllPosts);
 
   constructor() {
-    firstValueFrom(this.postService.fetchPosts());
+    this.store.dispatch(postActions.getPosts({posts: []}));
   }
 
   ngAfterViewInit() {
@@ -40,7 +40,7 @@ export class PostFeedComponent implements AfterViewInit {
   }
 
   resizeFeed() {
-    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
+    const {top} = this.hostElement.nativeElement.getBoundingClientRect();
 
     const height = window.innerHeight - top - 24 - 24;
     this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
@@ -49,12 +49,12 @@ export class PostFeedComponent implements AfterViewInit {
   onCreatedPost(postText: string) {
     if (!postText) return;
 
-    firstValueFrom(
-      this.postService.createPost({
+    this.store.dispatch(postActions.createPost({
+      post: {
         title: 'Пост',
         content: postText,
         authorId: this.profile()!.id,
-      })
-    );
+      }
+    }));
   }
 }

@@ -1,42 +1,42 @@
 @if (post(); as post) {
-<app-avatar-circle
-  class="size32"
-  [avatarUrl]="post.author.avatarUrl"
-></app-avatar-circle>
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="post.author.avatarUrl"
+  ></app-avatar-circle>
 
-<main class="post-body">
-  <div class="post-header">
-    <strong class="post__author">
-      {{ post.author.firstName }} {{ post.author.lastName }}
-      <span class="post-created-at">{{ post.createdAt | timeAgo }}</span>
-    </strong>
-  </div>
+  <main class="post-body">
+    <div class="post-header">
+      <strong class="post__author">
+        {{ post.author.firstName }} {{ post.author.lastName }}
+        <span class="post-created-at">{{ post.createdAt | timeAgo }}</span>
+      </strong>
+    </div>
 
-  <p class="medium-text post-content">{{ post.content }}</p>
+    <p class="medium-text post-content">{{ post.content }}</p>
 
-  <div class="post-counters">
+    <div class="post-counters">
     <span class="comment-amount">
       <svg icon="comment" class="svg16"></svg>
       <span class="comments-length">{{ comments().length }}</span>
     </span>
 
-    <span class="like-amount">
+      <span class="like-amount">
       <svg icon="like" class="svg16"></svg>
       <span class="likes-length">{{ post.likes }}</span>
     </span>
-  </div>
+    </div>
 
-  <div class="post-comment__wrapper">
-    @for (comment of comments(); track comment.id) {
-    <app-comment [comment]="comment"></app-comment>
-    }
-  </div>
+    <div class="post-comment__wrapper">
+      @for (comment of comments(); track comment.id) {
+        <app-comment [comment]="comment"></app-comment>
+      }
+    </div>
 
-  <app-post-input
-    class="post-input__comment"
-    (created)="onCreateComment($event)"
-    [isCommentInput]="true"
-  ></app-post-input>
-</main>
+    <app-post-input
+      class="post-input__comment"
+      (created)="onCreateComment($event)"
+      [isCommentInput]="true"
+    ></app-post-input>
+  </main>
 
 }
