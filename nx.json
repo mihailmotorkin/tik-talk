@@ -37,12 +37,14 @@
     "@nx/angular:library": {
       "linter": "eslint",
       "unitTestRunner": "none",
-      "style": "scss"
+      "style": "scss",
+      "scipTests": true
     },
     "@nx/angular:component": {
       "style": "scss",
       "scipTests": true,
-      "standalone": true
+      "standalone": true,
+      "changeDetection": "OnPush"
     }
   }
 }

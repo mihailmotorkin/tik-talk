@@ -2,6 +2,11 @@
 
 <div class="profile-card__wrapper">
   @for (profile of profiles(); track profile.id) {
+    @defer (on viewport) {
+
+    } @placeholder {
+      <div></div>
+    }
     <app-profile-card [profile]="profile"></app-profile-card>
   }
 </div>

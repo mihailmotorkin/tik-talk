@@ -44,14 +44,14 @@ export class ChatMessagesWrapperComponent implements AfterViewInit {
   }
 
   async onSendMessage(messageText: string) {
-    await firstValueFrom(
-      this.chatService.sendMessage(this.chat().id, messageText)
+    this.chatService.wsAdapter.sendMessage(
+      messageText,
+      this.chat().id
     );
     await this.refreshMessages(true);
   }
 
   async refreshMessages(scrollBottom = false) {
-    await firstValueFrom(this.chatService.getChatsById(this.chat().id));
 
     if (scrollBottom) {
       this.scrollBottom();

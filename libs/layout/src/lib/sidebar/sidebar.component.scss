@@ -100,3 +100,10 @@
     color: var(--primary-color);
   }
 }
+.unread-message {
+  width: 26px;
+  height: 18px;
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  text-align: center;
+}

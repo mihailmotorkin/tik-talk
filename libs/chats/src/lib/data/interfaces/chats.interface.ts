@@ -15,9 +15,9 @@ export interface Message {
   text: string;
   createdAt: string;
   isRead: boolean;
-  updatedAt: string;
-  user?: Profile;
+  updatedAt?: string;
   isMine: boolean;
+  user?: Profile;
 }
 
 export interface LastMessageResponse {
@@ -30,5 +30,5 @@ export interface LastMessageResponse {
 
 export interface SortedMessageByDate {
   messages: Message[];
-  messagesDate: string;
+  messagesDate?: string;
 }
