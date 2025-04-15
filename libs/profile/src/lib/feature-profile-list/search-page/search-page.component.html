@@ -1,12 +1,27 @@
 <app-profile-filters></app-profile-filters>
 
-<div class="profile-card__wrapper">
-  @for (profile of profiles(); track profile.id) {
-    @defer (on viewport) {
-
-    } @placeholder {
-      <div></div>
-    }
-    <app-profile-card [profile]="profile"></app-profile-card>
+<div
+  class="profile-card__wrapper"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  [infiniteScrollContainer]="'app-search-page'"
+  [fromRoot]="true"
+  (scrolled)="onScroll()"
+>
+  @for (profile of profiles(); track profile.id;) {
+    <app-profile-card
+      [profile]="profile"
+    ></app-profile-card>
   }
 </div>
+
+<!--    @if (last) {-->
+<!--      @defer (on viewport) {-->
+<!--        <app-infinite-scroll-trigger-->
+<!--          (loaded)="timeToFetch()"-->
+<!--        ></app-infinite-scroll-trigger>-->
+<!--      } @placeholder {-->
+<!--        <div></div>-->
+<!--      }-->
+<!--    }-->

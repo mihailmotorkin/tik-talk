@@ -44,7 +44,8 @@
       "style": "scss",
       "scipTests": true,
       "standalone": true,
-      "changeDetection": "OnPush"
+      "changeDetection": "OnPush",
+      "prefix": "tt"
     }
   }
 }
