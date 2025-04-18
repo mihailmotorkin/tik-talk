@@ -17,6 +17,10 @@ import { AuthService } from '@tt/auth';
 let isRefreshing$ = new BehaviorSubject<boolean>(false);
 
 export const authTokenInterceptor: HttpInterceptorFn = (request, next) => {
+  if (request.url.includes('dadata.ru')) {
+    return next(request);
+  }
+
   const authService = inject(AuthService);
   const token = authService.token;
 

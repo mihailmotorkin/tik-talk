@@ -7,12 +7,13 @@ import {
 } from '@angular/forms';
 import { AuthService } from '@tt/auth';
 import { Router } from '@angular/router';
+import { TtInputComponent } from '@tt/common-ui';
 
 @Component({
-    selector: 'app-login-page',
-    imports: [ReactiveFormsModule],
-    templateUrl: './login-page.component.html',
-    styleUrl: './login-page.component.scss'
+  selector: 'app-login-page',
+  imports: [ReactiveFormsModule, TtInputComponent],
+  templateUrl: './login-page.component.html',
+  styleUrl: './login-page.component.scss'
 })
 export class LoginPageComponent {
   authService = inject(AuthService);
@@ -24,6 +25,10 @@ export class LoginPageComponent {
     username: new FormControl<string | null>(null, Validators.required),
     password: new FormControl<string | null>(null, Validators.required),
   });
+
+  ngOnInit() {
+    this.form.controls.username.disable()
+  }
 
   onSubmit() {
     if (this.form.valid) {

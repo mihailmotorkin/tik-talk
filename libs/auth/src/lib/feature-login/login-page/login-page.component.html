@@ -1,15 +1,23 @@
 <form [formGroup]="form" class="login-form">
   <h1 class="h1 login-form__title">Вход</h1>
 
-  <label class="tt-control-label">
+  <tt-input
+    type="text"
+    placeholder="Введите логин"
+  >
     Telegram username
-    <input
-      formControlName="username"
-      class="tt-input"
-      type="text"
-      placeholder="Введите логин"
-    />
-  </label>
+  </tt-input>
+
+<!--  <label class="tt-control-label">-->
+<!--    Telegram username-->
+<!--    <input-->
+<!--      formControlName="username"-->
+<!--      class="tt-input"-->
+<!--      type="text"-->
+<!--      placeholder="Введите логин"-->
+<!--    />-->
+<!--  </label>-->
+
   <label class="tt-control-label">
     Password
     <div class="password-input">
